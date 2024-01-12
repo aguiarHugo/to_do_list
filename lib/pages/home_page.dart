@@ -52,7 +52,11 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: createNewTask,
-        child: Icon(Icons.add),
+        backgroundColor: Colors.purple[800], // Define a cor de fundo do botão
+        child: Icon(
+          Icons.add,
+          color: Colors.white, // Define a cor do ícone
+        ),
       ),
       body: ListView.builder(
         itemCount: toDoList.length,
