@@ -4,7 +4,9 @@ import "package:flutter/material.dart";
 import "package:to_do_list/utils/action_buttons.dart";
 
 class DialogBox extends StatelessWidget {
-  const DialogBox({super.key});
+  final controller;
+
+  const DialogBox({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,7 @@ class DialogBox extends StatelessWidget {
             style: TextStyle(
               color: Colors.white, // Cor do texto que está sendo digitado
             ),
+            controller: controller,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               hintText: "Adicione uma nova tarefa",
