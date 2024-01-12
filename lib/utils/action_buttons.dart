@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import "package:flutter/material.dart";
 
 class ActionButtons extends StatelessWidget {
@@ -10,8 +12,13 @@ class ActionButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: onPressed,
-      color: Colors.green, // Acesso correto à cor primária
-      child: Text(text),
+      color: Colors.purple[800],
+      child: Text(
+        text,
+        style: TextStyle(
+          color: Colors.white, // Define a cor do texto para branco
+        ),
+      ),
     );
   }
 }
