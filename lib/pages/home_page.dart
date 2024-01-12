@@ -29,15 +29,37 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  // save new task
+  void saveNewTask() {
+    if (_controller.text.trim().isEmpty) {
+      // Show an error if the input is empty
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Oops, parece que você não digitou sua tarefa!"),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+
+    setState(() {
+      toDoList.add([_controller.text, false]);
+      _controller.clear();
+    });
+    Navigator.of(context).pop(); // Fecha o diálogo
+  }
+
   // create a new task
   void createNewTask() {
     showDialog(
-        context: context,
-        builder: (context) {
-          return DialogBox(
-            controller: _controller,
-          );
-        });
+      context: context,
+      builder: (context) {
+        return DialogBox(
+          controller: _controller,
+          onSave: saveNewTask,
+        );
+      },
+    );
   }
 
   @override
@@ -49,7 +71,7 @@ class _HomePageState extends State<HomePage> {
             child: Text(
           'TAREFAS',
           style: TextStyle(
-            color: Colors.white, // Altere para a cor desejada
+            color: Colors.white,
           ),
         )),
         backgroundColor: Colors.purple[800],
@@ -57,10 +79,10 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: createNewTask,
-        backgroundColor: Colors.purple[800], // Define a cor de fundo do botão
+        backgroundColor: Colors.purple[800],
         child: Icon(
           Icons.add,
-          color: Colors.white, // Define a cor do ícone
+          color: Colors.white,
         ),
       ),
       body: ListView.builder(
